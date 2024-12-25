@@ -1,0 +1,27 @@
+.bg-body-tertiary {
+  background-color: #474444 !important;
+  color: #ffffff !important;
+}
+
+.bg-body-menu {
+  background-color: #474444 !important;
+  color: #ffffff !important;
+}
+
+.navbar-text-white {
+  color: #ffffff !important; /* NavDropdown 제목을 하얀색으로 */
+}
+
+  /* 드롭다운 메뉴 전체의 배경색과 텍스트 색상을 일관되게 적용 */
+.dropdown-menu {
+  background-color: #474444 !important; /* 드롭다운 메뉴 배경 검정색 */
+  color: #ffffff !important;            /* 드롭다운 메뉴 텍스트 하얀색 */
+}
+
+.bg-body-menu .dropdown-item {
+  color: #ffffff !important;           /* 드롭다운 항목의 글씨 하얀색 */
+}
+
+.bg-body-menu .dropdown-divider {
+  background-color: rgba(255, 255, 255, 0.864); /* 연한 하얀색 구분선 */
+}

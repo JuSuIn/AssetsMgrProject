@@ -1,0 +1,19 @@
+.footer-container {
+    margin : 50px;
+    display : flex;
+    justify-content: space-around;
+    padding : 20px;
+    background-color: #f8f9fa;
+    font-family : 'Arial', sans-serif;
+    border-top : 1px soild #e0e0e0;
+}
+
+.footer-column {
+    width : 45%;
+}
+
+h3 {
+    font-size : 1.2rem;
+    margin-bottom: 10px;
+    color : #333;
+}
