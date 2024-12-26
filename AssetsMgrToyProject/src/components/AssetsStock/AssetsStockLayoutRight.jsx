@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'; //bootstrap download
 import { Container,Row,Col } from "react-bootstrap";
 import AssetsStockLYOR_1to1 from './AssetsStockLYOR_1to1';
-
+    
 const AssetsStockLayoutRight = () => {
     return (
         <Container fluid style={{ gap: "10px", display: "grid" ,height: '100vh'}}>
