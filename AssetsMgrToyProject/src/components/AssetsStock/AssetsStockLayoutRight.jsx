@@ -1,12 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css'; //bootstrap download
 import { Container,Row,Col } from "react-bootstrap";
+import AssetsStockLYOR_1to1 from './AssetsStockLYOR_1to1';
 
 const AssetsStockLayoutRight = () => {
     return (
         <Container fluid style={{ gap: "10px", display: "grid" ,height: '100vh'}}>
             <Row className='layout-row'> 
                 <Col xs={12} md={12} style={{ backgroundColor: 'grey', height: '8vh', padding: '8px' }}>
-                    주요종목 Layout 1-1
+                    <AssetsStockLYOR_1to1 />
                 </Col>
             </Row>
             <Row>
