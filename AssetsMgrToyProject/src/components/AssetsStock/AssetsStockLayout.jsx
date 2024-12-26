@@ -15,7 +15,7 @@ const AssetsStockLayout = () => {
             <Col xs={12} md={7} lg={10} style={{ backgroundColor : '#191818',height: '100%', padding: '20px' }}>
                 <AssetsStockLayoutRight />
             </Col>
-            </Row>
+            </Row> 
       </Container>
     );
 }
