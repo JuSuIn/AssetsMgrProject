@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html leng="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stock Volume</title>
+    </head>
+    <body>
+        <h1> trading volume </h1>
+        <div id="stock-volume">Loading...</div>
+
+        <script>
+            fetch('/stock-volume/')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('stock-volume').innerText = JSON.stringify(data,null,2);
+                });
+        </script>
+    </body>
+</html>
