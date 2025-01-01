@@ -6,11 +6,11 @@
         <title>Stock Volume</title>
     </head>
     <body>
-        <h1> trading volume </h1>
+        <h1> trading volume 여긴가?</h1>
         <div id="stock-volume">Loading...</div>
 
         <script>
-            fetch('/stock-volume/')
+            fetch('/asstock/stk-kdx-volume/')
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('stock-volume').innerText = JSON.stringify(data,null,2);

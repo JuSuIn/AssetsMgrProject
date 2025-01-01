@@ -5,7 +5,7 @@ import requests
 
 #KRX open api url
 def get_stk_kdx_volume():
-    basDd="20241227"
+    basDd="20241230"
     url = "http://data-dbg.krx.co.kr/svc/sample/apis/idx/kospi_dd_trd?"+f"basDd={ basDd }"
     api_key ="74D1B99DFBF345BBA3FB4476510A4BED4C78D13A"
     
