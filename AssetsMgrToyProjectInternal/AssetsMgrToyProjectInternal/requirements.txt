@@ -1,5 +1,0 @@
-# 의존성을 위해 해당 프로젝트에 설치한 프로그램 모음
-#(A collection of programs installed in the project for dependency purposes.)
-
-Django==4.2.5
-requests==2.26.0
