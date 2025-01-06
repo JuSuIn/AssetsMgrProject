@@ -16,6 +16,10 @@ class KospiDDInFor(models.Model):
     acc_trdval = models.BigIntegerField()#거래대금
     mktcap = models.BigIntegerField()#상장시가총액
     
+    class Meta:
+        db_table = 'kospi_dd_info'
+    
+    
 
 #Koddaq 
 #코스닥시장에 상장되어 있는 주권의 매매정보
@@ -36,3 +40,5 @@ class KosDaQDDInFor(models.Model):
         mktcap = models.BigIntegerField()#시가총액
         list_shrs = models.BigIntegerField()#상장주식수
         
+        class Meta:
+            db_table = 'kosdaq_dd_info'
