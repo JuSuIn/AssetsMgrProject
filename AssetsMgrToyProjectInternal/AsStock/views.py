@@ -3,6 +3,7 @@ from django.http import JsonResponse
 import requests
 from .Apis.krx_kospi_dd_api import get_stk_kospi_dd_volume
 from .Apis.krx_ksq_dd_api   import get_stk_kosdaq_dd_volume
+from .Apis.krx_oil_bydd_api import get_krx_oil_bydd_volume
 
 
 #KRX open api url
@@ -51,6 +52,12 @@ def stk_kospi_dd_volume(request):
 def stk_kosdaq_dd_volume(request):
     volume_data= get_stk_kosdaq_dd_volume()
     
+    return JsonResponse(volume_data)
+
+#석유의 시세정보를 제공(일별)에 대해 해당하는 api
+def stk_oil_bydd_volume(request):
+    volume_data = get_krx_oil_bydd_volume()
+
     return JsonResponse(volume_data)
 
 # View that renders the stock trading volume page

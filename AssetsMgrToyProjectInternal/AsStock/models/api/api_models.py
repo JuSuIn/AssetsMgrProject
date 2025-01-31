@@ -83,7 +83,7 @@ class GoldByDDInfor(models.Model):
 class ExChangeBsInfor(models.Model):
     bas_dd = models.CharField(max_length=8) #기준일자
     bas_ymdhms = models.CharField(max_length=14) #기준일시
-    ex_Base = models.CharField(max_lengh=10) #환율명
+    ex_Base = models.CharField(max_length=10) #환율명
     ex_Rates = models.FloatField()# 환율
     
     class Meta:
@@ -94,7 +94,7 @@ class ExChangeBsInfor(models.Model):
 class InterestRateInfor(models.Model):
     bas_dd = models.CharField(max_length=8) #기준일자
     bas_ymdhms = models.CharField(max_length=14) #기준일시
-    ir_Base = models.CharField(max_lengh=10) #금리명
+    ir_Base = models.CharField(max_length=10) #금리명
     ir_Rates = models.FloatField()# 금리
     
     class Meta:

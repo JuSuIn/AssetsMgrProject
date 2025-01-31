@@ -5,7 +5,7 @@ import requests
 #KRX open api Kosdaq url
 #코스닥시장에 상장되어 있는 주권의 매매정보 제공 api
 def get_stk_kosdaq_dd_volume():
-    basDd="20241230"
+    basDd="20250107"
     
     # 원래 코드 
     #url = "http://data-dbg.krx.co.kr/svc/apis/idx/kospi_dd_trd"+f"basDd={ basDd }"

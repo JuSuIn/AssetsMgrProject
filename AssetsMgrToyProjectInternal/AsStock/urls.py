@@ -6,4 +6,5 @@ urlpatterns = [
     path('stk_kospi_dd_volume/',views.stk_kospi_dd_volume,name='stk_kospi_dd_volume'),#KRX open api kospi url
     path('stk_kosdaq_dd_volume/',views.stk_kosdaq_dd_volume,name='stk_kosdaq_dd_volume'), #KRX open api Kosdaq url
     #path('stock-volume-page/',views.stock_volume_page,name='stock_volume_page'), # stock trading volume page
+    path('stk_oil_bydd_volume/',views.stk_oil_bydd_volume,name='stk_oil_bydd_volume')
 ]
