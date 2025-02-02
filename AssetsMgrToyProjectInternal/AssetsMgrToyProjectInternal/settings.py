@@ -77,9 +77,17 @@ WSGI_APPLICATION = "AssetsMgrToyProjectInternal.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": "localhost",  # 서버 주소
+        "PORT": "5432",  # 서버 포트
+        "NAME": "mydb",  # 데이터베이스 명
+        "USER": "myuser",  # 유저명
+        "PASSWORD": "mypw",  # 암호
     }
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
 }
 
 
