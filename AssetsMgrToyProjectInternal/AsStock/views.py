@@ -42,7 +42,7 @@ from .Apis.krx_gold_bydd_api import get_krx_gold_bydd_volume
 #     return JsonResponse(volumn_data)
 
 #KRX open api kospi url
-#코스피 시리즈 지수의 시세정보를 제공(일별)에 대해 해당하는 api
+#코스피 시리즈 지수의 시세 정보를 제공(일별)에 대해 해당 하는 api
 def stk_kospi_dd_volume(request):
     volumn_data = get_stk_kospi_dd_volume()
     
@@ -61,7 +61,7 @@ def stk_oil_bydd_volume(request):
 
     return JsonResponse(volume_data)
 
-# 금시장 일별매매정보  대해 해당하는 api
+# 금시장 일별 매매 정보  대해 해당 하는 api
 def krx_gold_bydd_volume(request):
     volume_data = get_krx_gold_bydd_volume()
 
