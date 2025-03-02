@@ -78,7 +78,8 @@ WSGI_APPLICATION = "AssetsMgrToyProjectInternal.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "HOST": "localhost",  # 서버 주소
+        "HOST" : "db",# docker compose 에서 서비스 이름
+        #"HOST": "localhost",  # 서버 주소
         "PORT": "5432",  # 서버 포트
         "NAME": "mydb",  # 데이터베이스 명
         "USER": "myuser",  # 유저명
@@ -131,3 +132,10 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# celery setting
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

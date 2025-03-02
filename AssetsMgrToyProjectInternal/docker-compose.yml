@@ -1,14 +1,72 @@
-version: '3'
-
 services:
-  postgres:
+  db:
     image: postgres:latest
-    restart: always
+    container_name: postgres_AsmgrIn # change db container
+    #restart: always
     environment:
       # pg로 시작하는 이름은 불가
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypw
       POSTGRES_DB: mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - assetMgr_network # change network
     ports:
-      # 외부에 노출시킬 포트 : 내부 포트
       - "5432:5432"
+
+  redis:
+      image : redis:7
+      container_name: redis_AsmgrIn
+      ports:
+        - "6379:6379"
+      networks:
+        - assetMgr_network # change network name
+
+  web: #service name build name change
+    build: . # image build name change
+    container_name: asmgrin_container
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+      - celery_worker
+    networks:
+      - assetMgr_network # change network name
+
+  celery_worker:
+    build: .
+    container_name: celery_worker
+    command: celery -A AssetsMgrToyProjectInternal worker --loglevel=info  # Celery 워커 실행
+    volumes:
+      - .:/code
+    networks:
+      - assetMgr_network # change network name
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+
+#  celery-beat:
+#    build: .
+#    container_name: celery_beat
+#    command: celery -A AssetsMgrToyProjectInternal beat --loglevel=info
+#    volumes:
+#      - .:/code
+#    networks:
+#      - assetMgr_network # change network name
+#    depends_on:
+#      - redis
+##      - postgres
+
+networks:
+  assetMgr_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
