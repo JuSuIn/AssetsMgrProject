@@ -16,12 +16,12 @@ services:
       - "5432:5432"
 
   redis:
-      image : redis:7
-      container_name: redis_AsmgrIn
-      ports:
-        - "6379:6379"
-      networks:
-        - assetMgr_network # change network name
+    image : redis:7
+    container_name: redis_AsmgrIn
+    ports:
+      - "6379:6379"
+    networks:
+      - assetMgr_network # change network name
 
   web: #service name build name change
     build: . # image build name change
@@ -41,13 +41,15 @@ services:
   celery_worker:
     build: .
     container_name: celery_worker
-    command: celery -A AssetsMgrToyProjectInternal worker --loglevel=info  # Celery 워커 실행
+    command: dockerize -wait tcp://redis_AsmgrIn:6379 -timeout 30s celery -A AssetsMgrToyProjectInternal worker --loglevel=info
+ #   command: celery -A AssetsMgrToyProjectInternal worker --loglevel=info  # Celery 워커 실행
     volumes:
       - .:/code
     networks:
       - assetMgr_network # change network name
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
     depends_on:
       - redis
 
