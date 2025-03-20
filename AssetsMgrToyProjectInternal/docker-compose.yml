@@ -53,17 +53,19 @@ services:
     depends_on:
       - redis
 
-#  celery-beat:
-#    build: .
-#    container_name: celery_beat
-#    command: celery -A AssetsMgrToyProjectInternal beat --loglevel=info
-#    volumes:
-#      - .:/code
-#    networks:
-#      - assetMgr_network # change network name
-#    depends_on:
-#      - redis
-##      - postgres
+  celery-beat:
+    build: .
+    container_name: celery_beat
+    command: celery -A AssetsMgrToyProjectInternal beat --loglevel=info
+    volumes:
+      - .:/code
+    networks:
+      - assetMgr_network # change network name
+    depends_on:
+      - web
+      - redis
+      - celery_worker
+#      - postgres
 
 networks:
   assetMgr_network:
