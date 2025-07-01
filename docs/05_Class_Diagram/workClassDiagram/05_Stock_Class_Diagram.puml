@@ -1,0 +1,79 @@
+@startuml
+skinparam backgroundColor #2b2b2b
+skinparam classBackgroundColor #3c3f41
+skinparam classBorderColor #b0b0b0
+skinparam classFontColor #f0f0f0
+skinparam classAttributeFontColor #f0f0f0
+skinparam ArrowFontColor #f0f0f0
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #e0e0e0
+skinparam DefaultTextAlignment left
+
+class User {
+  UUID id
+  String name
+}
+
+class StockInfo {
+  String ticker
+  String name
+  String market
+  String sector
+}
+
+class StockAsset {
+  UUID id
+  UUID userId
+  String ticker
+  int quantity
+  BigDecimal averageBuyPrice
+  LocalDateTime purchasedAt
+}
+
+class StockInterest {
+  UUID id
+  UUID userId
+  String ticker
+  LocalDateTime addedAt
+}
+
+class StockHistory {
+  UUID id
+  String ticker
+  LocalDate date
+  BigDecimal openPrice
+  BigDecimal closePrice
+  BigDecimal highPrice
+  BigDecimal lowPrice
+  long volume
+}
+
+class StockNews {
+  UUID id
+  String ticker
+  String title
+  String source
+  String url
+  LocalDateTime publishedAt
+}
+
+class StockChart {
+  String ticker
+  LocalDateTime time
+  BigDecimal open
+  BigDecimal close
+  BigDecimal high
+  BigDecimal low
+  long volume
+}
+
+' 관계 정의
+User "1" --> "0..*" StockAsset : owns
+User "1" --> "0..*" StockInterest : follows
+StockAsset "1" --> "1" StockInfo : refers to
+StockInterest "1" --> "1" StockInfo : refers to
+StockHistory "0..*" --> "1" StockInfo : tracks
+StockNews "0..*" --> "1" StockInfo : reports on
+StockChart "0..*" --> "1" StockInfo : visualizes
+
+@enduml

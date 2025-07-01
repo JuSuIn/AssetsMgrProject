@@ -1,0 +1,79 @@
+@startuml
+skinparam backgroundColor #2b2b2b
+skinparam classBackgroundColor #3c3f41
+skinparam classBorderColor #b0b0b0
+skinparam classFontColor #f0f0f0
+skinparam classAttributeFontColor #f0f0f0
+skinparam ArrowFontColor #f0f0f0
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #e0e0e0
+skinparam DefaultTextAlignment left
+
+class User {
+  UUID id
+  String name
+}
+
+' 자산 관련 클래스
+class Asset {
+  UUID id
+  UUID userId
+  String name
+  BigDecimal amount
+  String institutionName
+  String accountNumber
+  LocalDateTime createdAt
+  LocalDateTime updatedAt
+  AssetType assetType
+  List<AssetHistory> histories
+}
+
+class AssetType {
+  String code
+  String name
+}
+
+class AssetHistory {
+  UUID id
+  UUID assetId
+  LocalDateTime changedAt
+  BigDecimal previousAmount
+  BigDecimal changedAmount
+  String memo
+}
+
+' 목표 관련 클래스
+class Goal {
+  UUID id
+  UUID userId
+  String name
+  GoalType goalType
+  BigDecimal targetAmount
+  LocalDate targetDate
+  UUID recommendedGoalId
+}
+
+class GoalType {
+  String code
+  String description
+}
+
+class RecommendedGoal {
+  UUID id
+  String name
+  GoalType goalType
+  BigDecimal defaultTargetAmount
+  String description
+}
+
+' 관계 설정
+User "1" --> "0..*" Asset : owns
+Asset "1" --> "0..*" AssetHistory : has
+Asset "1" --> "1" AssetType : categorized as
+
+User "1" --> "0..*" Goal : sets
+Goal "1" --> "1" GoalType : of type
+Goal "0..1" --> "1" RecommendedGoal : based on
+RecommendedGoal "1" --> "1" GoalType : of type
+
+@enduml

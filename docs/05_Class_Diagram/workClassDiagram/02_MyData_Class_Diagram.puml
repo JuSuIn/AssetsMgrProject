@@ -1,0 +1,60 @@
+@startuml
+skinparam backgroundColor #2b2b2b
+skinparam classBackgroundColor #3c3f41
+skinparam classBorderColor #b0b0b0
+skinparam classFontColor #f0f0f0
+skinparam classAttributeFontColor #f0f0f0
+skinparam ArrowFontColor #f0f0f0
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #e0e0e0
+skinparam DefaultTextAlignment left
+
+class User {
+  UUID id
+  String name
+}
+
+class MyDataConsent {
+  UUID id
+  UUID userId
+  String institutionCode
+  LocalDateTime agreedAt
+  LocalDateTime revokedAt
+  boolean isActive
+}
+
+class Institution {
+  String code
+  String name
+  String apiEndpoint
+}
+
+class MyDataAsset {
+  UUID id
+  UUID userId
+  String institutionCode
+  String assetName
+  BigDecimal amount
+  String assetType
+  LocalDateTime collectedAt
+}
+
+class MyDataSyncLog {
+  UUID id
+  UUID userId
+  String institutionCode
+  LocalDateTime startedAt
+  LocalDateTime finishedAt
+  String status  ' 성공, 실패 등
+  String message
+}
+
+' 관계 설정
+User "1" --> "0..*" MyDataConsent : consents
+User "1" --> "0..*" MyDataAsset : owns
+User "1" --> "0..*" MyDataSyncLog : syncs
+MyDataConsent "1" --> "1" Institution : refers to
+MyDataAsset "1" --> "1" Institution : collected from
+MyDataSyncLog "1" --> "1" Institution : syncs with
+
+@enduml

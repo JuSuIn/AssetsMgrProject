@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor #2b2b2b
+skinparam classBackgroundColor #3c3f41
+skinparam classBorderColor #b0b0b0
+skinparam classFontColor #f0f0f0
+skinparam classAttributeFontColor #f0f0f0
+skinparam ArrowFontColor #f0f0f0
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #e0e0e0
+skinparam DefaultTextAlignment left
+
+class User {
+  UUID id
+  String name
+}
+
+class FinancialProduct {
+  UUID id
+  String name
+  ProductCategory category
+  UUID institutionId
+  BigDecimal interestRate
+  int termInMonths
+  String description
+}
+
+class FinancialInstitution {
+  UUID id
+  String name
+  String logoUrl
+  String homepageUrl
+}
+
+class ProductCategory {
+  String code
+  String name
+}
+
+class ProductMatch {
+  UUID id
+  UUID userId
+  UUID productId
+  LocalDateTime matchedAt
+  String matchReason
+}
+
+' 관계 정의
+FinancialProduct "1" --> "1" ProductCategory : categorized as
+FinancialProduct "1" --> "1" FinancialInstitution : offered by
+User "1" --> "0..*" ProductMatch : receives
+ProductMatch "1" --> "1" FinancialProduct : matches
+
+@enduml
