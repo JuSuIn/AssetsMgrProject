@@ -1,0 +1,73 @@
+@startuml
+' 다크 테마 스타일 유지
+skinparam backgroundColor #2b2b2b
+skinparam classBackgroundColor #3c3f41
+skinparam classBorderColor #b0b0b0
+skinparam classFontColor #f0f0f0
+skinparam ArrowColor #e0e0e0
+skinparam ArrowFontColor #f0f0f0
+
+entity User {
+  * id : UUID <<PK>>
+  --
+  name : String
+}
+
+entity StockInfo {
+  * ticker : String <<PK>>
+  --
+  name : String
+  market : String
+  sector : String
+}
+
+entity StockAsset {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  ticker : String <<FK>>
+  quantity : Integer
+  average_buy_price : BigDecimal
+  purchased_at : LocalDateTime
+}
+
+entity StockInterest {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  ticker : String <<FK>>
+  added_at : LocalDateTime
+}
+
+entity StockHistory {
+  * id : UUID <<PK>>
+  --
+  ticker : String <<FK>>
+  date : LocalDate
+  open_price : BigDecimal
+  close_price : BigDecimal
+  high_price : BigDecimal
+  low_price : BigDecimal
+  volume : Long
+}
+
+entity StockNews {
+  * id : UUID <<PK>>
+  --
+  ticker : String <<FK>>
+  title : String
+  source : String
+  url : String
+  published_at : LocalDateTime
+}
+
+' 관계 정의
+StockAsset }o--|| User : user_id
+StockAsset }o--|| StockInfo : ticker
+
+StockInterest }o--|| User : user_id
+StockInterest }o--|| StockInfo : ticker
+
+StockHistory }o--|| StockInfo : ticker
+StockNews }o--|| StockInfo : ticker
+@enduml

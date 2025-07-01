@@ -1,0 +1,49 @@
+@startuml
+' 다크 테마 스타일
+skinparam backgroundColor #2b2b2b
+skinparam classBackgroundColor #3c3f41
+skinparam classBorderColor #b0b0b0
+skinparam classFontColor #f0f0f0
+skinparam ArrowColor #e0e0e0
+skinparam ArrowFontColor #f0f0f0
+
+entity User {
+  * id : UUID <<PK>>
+  --
+  name : String
+}
+
+entity Asset {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  name : String
+  amount : BigDecimal
+  asset_type_code : String <<FK>>
+  institution_name : String
+  account_number : String
+  created_at : LocalDateTime
+  updated_at : LocalDateTime
+}
+
+entity AssetType {
+  * code : String <<PK>>
+  --
+  name : String
+}
+
+entity AssetHistory {
+  * id : UUID <<PK>>
+  --
+  asset_id : UUID <<FK>>
+  changed_at : LocalDateTime
+  previous_amount : BigDecimal
+  changed_amount : BigDecimal
+  memo : String
+}
+
+' 관계 정의
+Asset }o--|| User : user_id
+Asset }o--|| AssetType : asset_type_code
+AssetHistory }o--|| Asset : asset_id
+@enduml

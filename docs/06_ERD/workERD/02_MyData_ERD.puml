@@ -1,0 +1,64 @@
+@startuml
+' 다크 테마 스타일 유지
+skinparam backgroundColor #2b2b2b
+skinparam classBackgroundColor #3c3f41
+skinparam classBorderColor #b0b0b0
+skinparam classFontColor #f0f0f0
+skinparam ArrowColor #e0e0e0
+skinparam ArrowFontColor #f0f0f0
+
+entity User {
+  * id : UUID <<PK>>
+  --
+  name : String
+}
+
+entity Institution {
+  * code : String <<PK>>
+  --
+  name : String
+  api_endpoint : String
+}
+
+entity MyDataConsent {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  institution_code : String <<FK>>
+  agreed_at : LocalDateTime
+  revoked_at : LocalDateTime
+  is_active : Boolean
+}
+
+entity MyDataAsset {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  institution_code : String <<FK>>
+  asset_name : String
+  amount : BigDecimal
+  asset_type : String
+  collected_at : LocalDateTime
+}
+
+entity MyDataSyncLog {
+  * id : UUID <<PK>>
+  --
+  user_id : UUID <<FK>>
+  institution_code : String <<FK>>
+  started_at : LocalDateTime
+  finished_at : LocalDateTime
+  status : String
+  message : String
+}
+
+' 관계 정의
+MyDataConsent }o--|| User : user_id
+MyDataConsent }o--|| Institution : institution_code
+
+MyDataAsset }o--|| User : user_id
+MyDataAsset }o--|| Institution : institution_code
+
+MyDataSyncLog }o--|| User : user_id
+MyDataSyncLog }o--|| Institution : institution_code
+@enduml
