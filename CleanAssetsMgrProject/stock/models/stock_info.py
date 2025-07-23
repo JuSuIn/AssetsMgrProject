@@ -10,3 +10,9 @@
  모델명:
 - StockInfo
 """
+from django.db import models
+
+class StockInfo(models.Model):
+    #TODO : field 추후 정의
+    pass
+

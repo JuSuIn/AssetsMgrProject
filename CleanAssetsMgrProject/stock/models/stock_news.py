@@ -8,3 +8,9 @@
  모델명:
 -
 """
+
+from django.db import models
+
+class StockNews(models.Model):
+    #TODO : field 추후 정의
+    pass
