@@ -7,6 +7,7 @@
 -
  모델명:
 -
+
 """
 
 from django.db import models
