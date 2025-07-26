@@ -6,3 +6,4 @@ django-cors-headers
 drf-yasg  # Swagger
 python-decouple  # 환경 변수 분리용
 django-environ
+pytest-django # python Django test
