@@ -2,11 +2,13 @@ import os
 from pathlib import Path
 import environ
 
-# Load environment variables
-env = environ.Env()
-environ.Env.read_env()
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Load environment variables
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+#environ.Env.read_env()
 
 SECRET_KEY = env("SECRET_KEY", default="django-insecure-default-key")
 
@@ -21,6 +23,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "stock"
 ]
 
 MIDDLEWARE = [
