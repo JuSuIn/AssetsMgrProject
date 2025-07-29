@@ -11,6 +11,8 @@ stock_news.py
 """
 
 from django.db import models
+from django.utils import timezone
+import uuid
 
 class StockNews(models.Model):
     #TODO : field 고유식별자id,주식종목,뉴스제목,뉴스본문,뉴스언론사,URL,언론사실제 게시된 시간,시스템에 처음 저장된 시간

@@ -97,6 +97,8 @@ class StockHistory(models.Model):
         #  같은 주식에 대해 날짜 중복 방지
         unique_together = ('stock', 'date')
         ordering = ['date'] # 최신데이터가 먼저
+        verbose_name = "주식 이력"
+        verbose_name_plural = "주식 이력"
 
     def __str__(self):
         return f"{self.stock.ticker} - {self.date}"
